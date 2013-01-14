@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Doctor:</b>
+  <%= @doctor_schedule.doctor_id %>
+</p>
+
+<p>
+  <b>Schedule:</b>
+  <%= @doctor_schedule.schedule_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_doctor_schedule_path(@doctor_schedule) %> |
+<%= link_to 'Back', doctor_schedules_path %>

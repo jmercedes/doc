@@ -1,14 +1,10 @@
 Doc::Application.routes.draw do
-  resources :branches
+  
+  #resources :doctor_schedules
 
-
-  resources :locations
-
-
-  resources :specialties
-
-
-  resources :doctors
+  resources :doctors do
+    resources :specialties, :branches, :locations, :schedules    
+  end
 
 
   # The priority is based upon order of creation:
