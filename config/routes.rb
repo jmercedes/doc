@@ -1,4 +1,7 @@
 Doc::Application.routes.draw do
+  resources :branches
+
+
   resources :locations
 
 
