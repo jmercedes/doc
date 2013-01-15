@@ -11,11 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114222932) do
+ActiveRecord::Schema.define(:version => 20130115135525) do
 
   create_table "branches", :force => true do |t|
     t.string   "name"
-    t.integer  "doctor_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -31,13 +30,15 @@ ActiveRecord::Schema.define(:version => 20130114222932) do
     t.string   "prefix"
     t.string   "name"
     t.text     "bio"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "branch_id"
+    t.integer  "specialty_id"
+    t.integer  "location_id"
   end
 
   create_table "locations", :force => true do |t|
     t.string   "name"
-    t.integer  "doctor_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -52,11 +53,8 @@ ActiveRecord::Schema.define(:version => 20130114222932) do
 
   create_table "specialties", :force => true do |t|
     t.string   "name"
-    t.integer  "doctor_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "specialties", ["doctor_id"], :name => "index_specialties_on_doctor_id"
 
 end

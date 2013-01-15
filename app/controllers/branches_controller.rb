@@ -40,14 +40,17 @@ class BranchesController < ApplicationController
   # POST /branches
   # POST /branches.json
   def create
-    @branch = Branch.new(params[:branch])
+    #@doctor = Doctor.find(params[:id])
+    #@branch = Doctor.branches.new(params[:branch])
+    #redirect_to doctor_path(:doctor)
 
+    @branch = Branch.new(params[:branch])
     respond_to do |format|
-      if @branch.save
-        format.html { redirect_to @branch, notice: 'Branch was successfully created.' }
-        format.json { render json: @branch, status: :created, location: @branch }
-      else
-        format.html { render action: "new" }
+     if @branch.save
+      format.html { redirect_to @branch, notice: 'Branch was successfully created.' }
+       format.json { render json: @branch, status: :created, location: @branch }
+     else
+      format.html { render action: "new" }
         format.json { render json: @branch.errors, status: :unprocessable_entity }
       end
     end

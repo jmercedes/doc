@@ -13,15 +13,28 @@
 
   <div class="field">
     <%= f.label :prefix %><br />
-    <%= f.text_field :prefix %>
+    <%= f.select(:prefix, options_for_select([ "Dr.", "Dra"])) %>
+    
   </div>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :branch_id %><br />
+    <%= f.collection_select(:branch_id, @branches, :id, :name, { prompt: false }) %>
+  </div>
+  <div class="field">
+    <%= f.label :specialty_id %><br />
+    <%= f.collection_select(:specialty_id, @specialties, :id, :name, { prompt: false }) %>
+  </div>
+  <div class="field">
     <%= f.label :bio %><br />
     <%= f.text_area :bio %>
+    <div class="field">
+      <%= f.label :location_id %><br />
+      <%= f.collection_select(:location_id, @locations, :id, :name, { prompt: false }) %>
+    </div>
   </div>
   <div class="actions">
     <%= f.submit %>
