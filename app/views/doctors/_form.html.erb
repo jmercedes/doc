@@ -35,7 +35,34 @@
       <%= f.label :location_id %><br />
       <%= f.collection_select(:location_id, @locations, :id, :name, { prompt: false }) %>
     </div>
-  </div>
+
+<% @i = 0 %>
+
+<table class="table">
+<tr>
+<th>Monday</th>
+<th>Tuesday</th>
+<th>Wednesday</th>
+<th>Thursday</th>
+<th>Friday</th>
+<th>Saturday</th>
+<th>Sunday</th>
+</tr>
+
+<tr>
+  <%= to_columns(@doctor.schedules.limit(140), 7) do |schedule, i| %>
+    <%= fields_for "doctor[schedule_attributes][]", schedule do |schedule_form|  %>
+      <ul>
+         <% schedule_form.text_field :day, value: @days[0] %>
+         <li><%= schedule_form.check_box :hour, value: "8:00" %></li>
+      </ul>                 
+    <% end %>
+  <% end %>
+</tr>
+
+</table>      
+        
+    <%= debug(@doctor.schedules.length) %>
   <div class="actions">
     <%= f.submit %>
   </div>
