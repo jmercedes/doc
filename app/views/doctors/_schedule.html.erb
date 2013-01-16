@@ -1,0 +1,7 @@
+<% for schedule in @doctor.schedules %>
+  <%= fields_for "doctor[schedule_attributes][]", schedule do |schedule_form|  %>
+    <div class="field">
+      Schedule: <%= schedule_form.text_field :hour %>
+    </div>
+    <% end %>
+<% end %>

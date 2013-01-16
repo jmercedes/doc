@@ -28,7 +28,10 @@ class DoctorsController < ApplicationController
     @branches = Branch.all
     @specialties = Specialty.all
     @locations = Location.all
-
+    
+    @doctor.schedules = (1..140).to_a.map{ @doctor.schedules.build }    
+    days_of_the_week
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @doctor }
@@ -47,16 +50,13 @@ class DoctorsController < ApplicationController
   # POST /doctors
   # POST /doctors.json
   def create
-    @doctor = Doctor.new(params[:doctor])
+    @doctor = Doctor.new(params[:doctor])    
 
-    respond_to do |format|
-      if @doctor.save
-        format.html { redirect_to @doctor, notice: 'Doctor was successfully created.' }
-        format.json { render json: @doctor, status: :created, location: @doctor }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @doctor.errors, status: :unprocessable_entity }
-      end
+    if @doctor.save
+      flash[:notice] = "Doctor was successfully created"
+      redirect_to doctors_path
+    else
+      render action: 'new'
     end
   end
 
@@ -87,4 +87,11 @@ class DoctorsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def days_of_the_week
+    @days = Array.new
+    
+    @days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  end
+  
 end

@@ -19,6 +19,19 @@
     <%= f.label :hour %><br />
     <%= f.text_field :hour %>
   </div>
+  
+  <div class="field">
+    <%= f.label :hour %><br />
+    <%#= select_hour(4, ampm: true) %>
+    <%= am_pm_hour_select f, :hour, start:3 %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :doctor_id %><br />
+    <%= f.text_field :doctor_id %>
+  </div>
+
+  
   <div class="actions">
     <%= f.submit %>
   </div>

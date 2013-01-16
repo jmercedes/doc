@@ -1,5 +1,5 @@
 class Branch < ActiveRecord::Base
-  attr_accessible :doctor_id, :name
+  attr_accessible :name
   
   has_many :doctors
 end
